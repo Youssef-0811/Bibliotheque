@@ -25,126 +25,150 @@ include('pagination.php');
     <title>Document</title>
 </head>
 <header>
-    <?php
+<?php
 
-    include('HF/header2.php')
-    ?>
-</header>
+include('HF/header2.php')
+?>
+</header><br>
 
 <body>
+    
+
+
+    <div class="wrapper">
+<?php
+include('testSlider.php')
+
+?>
+    </div>
 
 
 
-    <div class="arrivals">
+
+<div class="arrivals">
         <h2>livres Disponibles</h2>
-        <div class="arrivals_box">
+<div class="arrivals_box">
 
-            <?php while ($ligne = mysqli_fetch_array($result)) {
+       <?php while ($ligne = mysqli_fetch_array($result)) {
+       
+    ?>
+         
 
-            ?>
-
-
-                <div class="arrivals_card">
-                    <div class="arrivals_image">
-                        <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['image']); ?>">
-                    </div>
-                    <div class="arrivals_tag">
-                        <p> <?php echo $ligne['Titre_Article']; ?> </p>
-                        <div class="arrivals_icon">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                        </div>
-                        <a href="#" class="arrivals_btn">Learn More</a>
-                    </div>
+            <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['image']); ?>">
                 </div>
+                <div class="arrivals_tag">
+                    <p>  <?php echo $ligne['Titre_Article']; ?> </p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Learn More</a>
+                </div>
+            </div>
             <?php
-            }
-            ?>
-        </div>
-    </div>
-    <div class="page-info">
-
-        affiche 1 sur <?php echo $pages ?>
-
-    </div>
-    <div class="pagination">
-
-        <a class="pagi" href="?page-nr=1">first</a>
-
-        <?php
-        if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
-
-        ?>
-
-            <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>">Previous</a>
-        <?php
-        } else {
-        ?>
-
-            <a class="pagi" href="">previous</a>
-        <?php
-
         }
-
-
         ?>
-
-
-        <div class="page-numbers">
-
-            <?php
-
-            for ($counter = 1; $counter <= $pages; $counter++) {
-            ?>
-                <a class="pagi" href="?page-nr=<?php echo $counter ?>"><?php echo $counter ?></a>
-
-            <?php
-            }
-
-
-
-            ?>
-
-
         </div>
 
 
-        <?php
 
-        if (!isset($GET['page-nr'])) {
-        ?>
 
-            <a class="pagi" href="?page-nr=2">Next</a>
+
+
+
+        
+</div>
+        <div class="page-info">
+       
             <?php
-        } else {
+        if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {?>
+affiche <?php echo $_GET['page-nr']?>  sur <?php echo $pages ?>
+<?php }else{?>
+ affiche 1  sur <?php echo $pages ?>
+<?php
+}?>
+            
+        </div>
+        <div class="pagination">
 
-            if ($GET['page-nr'] >= $pages) { ?>
-
-                <a>Next</a>
+            <a class="pagi" href="?page-nr=1">first</a>
 
             <?php
+            if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
 
+            ?>
+
+                <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>">Previous</a>
+            <?php
             } else {
             ?>
-                <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>">next</a>
 
-        <?php
+                <a class="pagi" href="">previous</a>
+            <?php
+
             }
-        }
-
-        ?>
 
 
-
-        <a class="pagi" href="?page-nr=<?php echo $pages ?>">last</a>
-
+            ?>
 
 
+            <div class="page-numbers">
 
-    </div>
+                <?php
+
+                for ($counter = 1; $counter <= $pages; $counter++) {
+                ?>
+                    <a class="pagi" href="?page-nr=<?php echo $counter ?>"><?php echo $counter ?></a>
+
+                <?php
+                }
+
+
+
+                ?>
+
+
+            </div>
+
+
+            <?php
+
+            if (!isset($GET['page-nr'])) {
+            ?>
+
+                <a class="pagi" href="?page-nr=2">Next</a>
+                <?php
+            } else {
+
+                if ($GET['page-nr'] >= $pages) { ?>
+
+                    <a>Next</a>
+
+                <?php
+
+                } else {
+                ?>
+                    <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>">next</a>
+
+            <?php
+                }
+            }
+
+            ?>
+
+
+
+            <a class="pagi" href="?page-nr=<?php echo $pages ?>">last</a>
+
+
+
+
+        </div>
 
 
 
@@ -154,9 +178,9 @@ include('pagination.php');
 
 
 
-    <?php
-    include('HF/footer.php')
-    ?>
+<?php
+include('HF/footer.php')
+?>
 
 
 

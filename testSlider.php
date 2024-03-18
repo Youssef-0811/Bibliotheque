@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automatic Image Slider</title>
-    <style>
+<style>
         .wrapper {
             position: relative;
             width: 500px;
@@ -22,13 +16,15 @@
             margin-left: auto;
             margin-right: auto;
             border-radius: 20px;
+            z-index: 0;
         }
 
         .wrapper img {
-            width: 250px;
-            height: 320px;
-            margin-top: 0.5rem;
-            border-radius: 10px;
+     width: 250px;
+    height: 320px;
+    margin-top:0.5rem;
+    margin-left:26.4% ;
+    border-radius: 1rem;
         }
 
         input {
@@ -88,11 +84,9 @@
         input+*+*:not(input[type=radio]) {
             display: none;
         }
+        
     </style>
-</head>
 
-<body>
-    <div class="wrapper">
         <input type="radio" name="image-slide" id="radio1" checked="checked">
         <picture class="sss">
             <img src="images/OIP (2).jpeg">
@@ -114,7 +108,7 @@
         <picture class="sss">
             <img src="images/book2.jpg" alt="">
         </picture>
-    </div>
+
 
     <script>
         let currentIndex = 0;
@@ -130,6 +124,3 @@
         // Change slide every 3 seconds
         setInterval(showNextSlide, 3000);
     </script>
-</body>
-
-</html>

@@ -65,15 +65,6 @@ $result = mysqli_query($conn, $sql);
 
 
 
-    <div class="wrapper">
-        <?php
-        include('testSlider.php')
-
-        ?>
-    </div>
-
-
-
 
 
 
@@ -172,10 +163,10 @@ $result = mysqli_query($conn, $sql);
             }
             ?>
         </div>
-    </div>
-
-    <h2>Auteurs</h2>
-
+</div>
+<div class="auteurs">
+<h2>Auteurs</h2>
+</div>
 
 
 </body>
