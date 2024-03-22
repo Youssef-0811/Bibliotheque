@@ -1,10 +1,7 @@
 <?php
-
 include('DataBase.php');
 
 include('pagination.php');
-
-
 
 ?>
 <!DOCTYPE html>
@@ -35,17 +32,17 @@ include('HF/header2.php')
     
 
 
-    <div class="wrapper">
+    
 <?php
-include('testSlider.php')
+include('slider.php')
 
 ?>
-    </div>
+    
 
 
 
 
-<div class="arrivals">
+<div class="arrivals" id="arrivals">
         <h2>livres Disponibles</h2>
 <div class="arrivals_box">
 
@@ -59,7 +56,7 @@ include('testSlider.php')
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['image']); ?>">
                 </div>
                 <div class="arrivals_tag">
-                    <p>  <?php echo $ligne['Titre_Article']; ?> </p>
+                    <p>  <?php echo $ligne['Titre_Article'];?></p>
                     <div class="arrivals_icon">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -67,8 +64,15 @@ include('testSlider.php')
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star-half-stroke"></i>
                     </div>
-                    <a href="#" class="arrivals_btn">Learn More</a>
+                    <form action="page-info.php" method="post">
+                  <input class="arrivals_btn" type="submit" name="submit" value="Savoir plus">
+                <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
+
+                  
+
+                </form>
                 </div>
+            
             </div>
             <?php
         }
@@ -96,14 +100,14 @@ affiche <?php echo $_GET['page-nr']?>  sur <?php echo $pages ?>
         </div>
         <div class="pagination">
 
-            <a class="pagi" href="?page-nr=1">first</a>
+            <a class="pagi" href="?page-nr=1#arrivals">first</a>
 
             <?php
             if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
 
             ?>
 
-                <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>">Previous</a>
+                <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>#arrivals">Previous</a>
             <?php
             } else {
             ?>
@@ -123,7 +127,7 @@ affiche <?php echo $_GET['page-nr']?>  sur <?php echo $pages ?>
 
                 for ($counter = 1; $counter <= $pages; $counter++) {
                 ?>
-                    <a class="pagi" href="?page-nr=<?php echo $counter ?>"><?php echo $counter ?></a>
+                    <a class="pagi" href="?page-nr=<?php echo $counter ?>#arrivals"><?php echo $counter ?></a>
 
                 <?php
                 }
@@ -141,7 +145,7 @@ affiche <?php echo $_GET['page-nr']?>  sur <?php echo $pages ?>
             if (!isset($GET['page-nr'])) {
             ?>
 
-                <a class="pagi" href="?page-nr=2">Next</a>
+                <a class="pagi" href="?page-nr=2#arrivals">Next</a>
                 <?php
             } else {
 
@@ -153,7 +157,7 @@ affiche <?php echo $_GET['page-nr']?>  sur <?php echo $pages ?>
 
                 } else {
                 ?>
-                    <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>">next</a>
+                    <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>#arrivals">next</a>
 
             <?php
                 }
@@ -163,7 +167,7 @@ affiche <?php echo $_GET['page-nr']?>  sur <?php echo $pages ?>
 
 
 
-            <a class="pagi" href="?page-nr=<?php echo $pages ?>">last</a>
+            <a class="pagi" href="?page-nr=<?php echo $pages ?>#arrivals">last</a>
 
 
 

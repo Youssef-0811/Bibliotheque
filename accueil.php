@@ -2,8 +2,6 @@
 
 include('DataBase.php');
 
-include('pagination.php');
-
 
 
 ?>
@@ -22,6 +20,7 @@ include('pagination.php');
     <link rel="stylesheet" href="CSS/footer.css"> -->
     <link rel="stylesheet" href="acueil.css">
     <link rel="stylesheet" href="header-footer2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
 
     <title>Document</title>
@@ -49,7 +48,7 @@ $result = mysqli_query($conn, $sql);
 ?>
 
 <body>
-    <div>
+    <div class="container">
 
         <div class="emp">
             <div class="txt">
@@ -156,7 +155,13 @@ $result = mysqli_query($conn, $sql);
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
                         </div>
-                        <a href="#" class="arrivals_btn">Learn More</a>
+                        
+                        <form action="page-info.php" method="post">
+                  <input class="arrivals_btn" type="submit" name="submit" value="Savoir plus">
+                <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
+
+                </form>
+
                     </div>
                 </div>
             <?php

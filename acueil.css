@@ -12,6 +12,9 @@ header {
    padding: 10px 0;
    text-align: center;
 }
+.container{
+   margin-top: 10rem;
+}
 
 
 /* Emp section styles */
@@ -23,6 +26,7 @@ header {
    color: #ffffff;
    border-radius: 2rem;
    margin: 1rem 1rem;
+   background-attachment: fixed;
 }
 .txt{
 text-transform: uppercase;
@@ -96,7 +100,7 @@ border-radius: 2rem;
    margin: auto 20px;
 }
 .arrivals_card:hover {
-   box-shadow: 0 0 5px #089da1;
+   box-shadow: 0 0 5px rgb(76, 44, 0);
 }
 
 .arrivals_image {
@@ -162,7 +166,7 @@ border-radius: 2rem;
 
 .about_btn {
    padding: 10px 20px;
-   background: #089da1;
+   background: rgb(76, 44, 0);
    color: #fff;
    text-decoration: none;
    margin-top: 2rem;
@@ -183,7 +187,7 @@ border-radius: 2rem;
    width: 310px;
    height: auto;
    text-align: center;
-   box-shadow: 0 0 8px #089da1;
+   box-shadow: 0 0 8px rgb(76, 44, 0);
    padding: 15px 10px;
    margin-bottom: 25px;
 }
