@@ -18,9 +18,9 @@ if ($result && $result->num_rows > 0) {
         echo "<td>" . $row['DateNaissance'] . "</td>";
         echo "<td style='white-space: nowrap;'>"; // Open table data for buttons
         // Add delete button with confirmation
-        echo "<button onclick='showDeleteModal(\"" . $row['ID'] . "\", \"" . $row['Nom'] . "\")' class='btn btn-danger' style='margin-right: 20px;'>Delete</button>";
+        echo "<button onclick='showDeleteModal(\"" . $row['Id'] . "\", \"" . $row['Nom'] . "\")' class='btn btn-danger' style='margin-right: 20px;'>Delete</button>";
         // Add edit button
-        echo "<button onclick='editAuthor(\"" . $row['ID'] . "\", \"" . $row['Nom'] . "\")' class='btn btn-primary'>Edit</button>";
+        echo "<button onclick='editAuthor(\"" . $row['Id'] . "\", \"" . $row['Nom'] . "\")' class='btn btn-primary'>Edit</button>";
         echo "</td>"; // Close table data for buttons
         echo "</tr>";
     }

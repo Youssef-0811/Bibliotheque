@@ -14,6 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn = $_POST["isbnBook"];
     $resume = $_POST["resumeBook"];
 
+    // Debugging: Print the received genre ID
+
+
+    echo "Received format ID: " . $formatId;
+
+
     // Upload image
     $image = $_FILES["image"];
     $imageType = pathinfo($image["name"], PATHINFO_EXTENSION);
@@ -30,10 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query
     if ($stmt->execute()) {
+        // Successful insertion
         header('Location: Book.php');
         exit;
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Error handling
+        echo "Error inserting data: " . $stmt->error; // Output detailed error message
     }
 
     // Close statement and connection

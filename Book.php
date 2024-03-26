@@ -173,42 +173,50 @@
                         </div>
                     </div>
 
-                    <div class="card border-left-primary shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Les livres disponibles</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr role="row">
-                                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 55.5px;" aria-sort="ascending" aria-label="Name: activate to sort column descending"></th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Titre
-                                                        </th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Auteur
-                                                        </th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 55.45px;" aria-label="Position: activate to sort column ascending">Parution
-                                                        </th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 185.45px;" aria-label="Position: activate to sort column ascending">Genre
-                                                        </th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 185.45px;" aria-label="Position: activate to sort column ascending">Éditeur
-                                                        </th>
-                                                </thead>
-                                                <tbody id="books">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                    <div class="container-fluid">
+                        <!-- Page Heading -->
+                        <div class="card border-left-primary shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Les livres disponibles</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 55.5px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Image</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Titre</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Auteur</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">ISBN</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Parution</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="books">
+                                            <?php
+                                            // Include the FetchB.php file to fetch livre data
+                                            include("FetchB.php");
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
+
+                    <!-- Modal for delete confirmation -->
+                    <div id="deleteModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p id="deleteModalText"></p>
+                            <div style="text-align: center;">
+                                <button id="deleteButton" class="btn btn-danger">Delete</button>
+                                <button id="cancelButton" class="btn btn-secondary">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="card border-left-primary shadow mb-4">
                         <div class="card-header py-3">
                             <h6 id="titleForm" class="m-0 font-weight-bold text-primary">Ajouter un livre</h6>
@@ -230,7 +238,7 @@
                                         $resultAuthors = $conn->query($sqlAuthors);
                                         if ($resultAuthors->num_rows > 0) {
                                             while ($rowAuthor = $resultAuthors->fetch_assoc()) {
-                                                echo "<option value='" . $rowAuthor['ID'] . "'>" . $rowAuthor['Nom'] . " " . $rowAuthor['Prenom'] . "</option>";
+                                                echo "<option value='" . $rowAuthor['Id'] . "'>" . $rowAuthor['Nom'] . " " . $rowAuthor['Prenom'] . "</option>";
                                             }
                                         }
                                         ?>
@@ -241,17 +249,20 @@
                                     <select class="form-control" id="genreBook" name="genreBook">
                                         <option value="">Choisissez un genre</option>
                                         <?php
+                                        include("DataBase.php");
                                         // Fetch genres from the database
                                         $sqlGenres = "SELECT * FROM genre";
                                         $resultGenres = $conn->query($sqlGenres);
                                         if ($resultGenres->num_rows > 0) {
                                             while ($rowGenre = $resultGenres->fetch_assoc()) {
-                                                echo "<option value='" . $rowGenre['ID'] . "'>" . $rowGenre['Nom'] . "</option>";
+                                                // Set the value of each option to the ID and display the name
+                                                echo "<option value='" . $rowGenre['Id'] . "'>" . $rowGenre['nom'] . "</option>";
                                             }
                                         }
                                         ?>
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="formatBook">Format</label>
                                     <select class="form-control" id="formatBook" name="formatBook">
@@ -262,7 +273,7 @@
                                         $resultFormats = $conn->query($sqlFormats);
                                         if ($resultFormats->num_rows > 0) {
                                             while ($rowFormat = $resultFormats->fetch_assoc()) {
-                                                echo "<option value='" . $rowFormat['ID'] . "'>" . $rowFormat['Nom'] . "</option>";
+                                                echo "<option value='" . $rowFormat['Id'] . "'>" . $rowFormat['Nom'] . "</option>";
                                             }
                                         }
                                         ?>
@@ -314,86 +325,40 @@
     <!-- Custom scripts for all pages-->
     <script src="js/common.js"></script>
     <script src="js/books.js"></script>
+    <script>
+        // Function to display delete confirmation modal
+        function showDeleteModal(livreId, livreTitle) {
+            var modal = document.getElementById('deleteModal');
+            var modalText = document.getElementById('deleteModalText');
+            modalText.innerHTML = "Are you sure you want to delete the livre '" + livreTitle + "'?";
 
+            var deleteButton = document.getElementById('deleteButton');
+            var cancelButton = document.getElementById('cancelButton');
+
+            deleteButton.onclick = function() {
+                // Redirect to the delete script with livre ID
+                window.location.href = "DeleteBook.php?id=" + livreId;
+            }
+
+            cancelButton.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            modal.style.display = "block";
+
+            var span = document.getElementsByClassName("close")[0];
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-<!-- <form action="ADDb.php" method="POST" enctype="multipart/form-data">
-    <table border="0" class="table" cellpadding="10" cellspacing="10">
-        <tr>
-            <td class="msg" align="center" colspan="2"></td>
-        </tr>
-        <tr>
-            <td class="labels">Ordre: </td>
-            <td><input type="text" id="Ordre" name="Ordre" placeholder="Entrer le nom de livre" size="25" class="fields" required="required" /></td>
-        </tr>
-        <tr>
-            <td class="labels">EAN : </td>
-            <td><input type="text" id="EAN" name="EAN" placeholder="Entre EAN de livre" size="25" class="fields" required="required" /></td>
-        </tr>
-        <tr>
-            <td class="labels">Titre Article : </td>
-            <td><input type="text" id="Titre_Article" name="Titre_Article" placeholder="Entrer le titre de l'article" size="25" class="fields" required="required" /></td>
-        </tr>
-        <tr>
-            <td class="labels">Classe</td>
-            <td>
-                <select id="genre" name='genre'>
-                    <option value='Dictionnaire'>Dictionnaire</option>
-                    <option value='Informatique'>Informatique</option>
-                    <option value='Mathematique'>Mathematique</option>
-                    <option value='Physique'>Physique</option>
-                    <option value='Chimie'>Chimie</option>
-                    <option value='Biologie'>Biologie</option>
-                    <option value='Science Appliquee'>Science Appliquee</option>
-                    <option value='Ingenierie'>Ingenierie</option>
-                    <option value='Gestion et service de lentreprise'>Gestion et service de l'entreprise</option>
-                    <option value='Economie'>Economie</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td class="labels">Categorie: </td>
-            <td><input type="text" id="categorie" name="Categorie" placeholder="Categorie" size="25" class="fields" required="required" /></td>
-        </tr>
-        <tr>
-            <td class="labels">Inventaire: </td>
-            <td><input type="text" id="Inventaire" name="Inventaire" placeholder="Inventaire" size="25" class="fields" required="required" /></td>
-        </tr>
-        <tr>
-            <td class="labels">Disponible: </td>
-            <td><input type="text" id="Disponible" name="Disponible" placeholder="Disponible" size="25" class="fields" required="required" /></td>
-        </tr>
-        <tr>
-            <td class="labels">Auteurs: </td>
-            <td>
-                <div class="custom-dropdown">
-                    <select id="authorSelect" name="author_id" class="custom-select" onclick="fetchAuthors()">
-                        <option value="">Select Author</option>
-                    </select>
-
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="labels">Image: </td>
-            <td><input type="file" id="image" name="image" accept="image/*" class="fields" />
-            </td>
-        </tr>
-
-
-        <tr>
-            <td colspan="2" align="center"><input type="submit" value="submit" name="submit" class="fields" /></td>
-        </tr>
-    </table>
-</form> -->
