@@ -38,12 +38,22 @@ include('slider.php')
 
 ?>
     
-
-
+<div class="selectdiv">
+  <label>
+      <select>
+          <option selected> Select Categorie </option>
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>option 3</option>
+      </select>
+  </label>
+</div><br>
 
 
 <div class="arrivals" id="arrivals">
         <h2>livres Disponibles</h2>
+        
+    
 <div class="arrivals_box">
 
        <?php while ($ligne = mysqli_fetch_array($result)) {
