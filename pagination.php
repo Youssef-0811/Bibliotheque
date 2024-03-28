@@ -32,8 +32,6 @@ $start = $page * $row_per_page;
 
 }
 
-$sql = "select * from livres LIMIT  $start, $row_per_page";
-$result = mysqli_query($conn,$sql);
 
 
 ?>

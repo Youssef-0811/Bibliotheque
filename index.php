@@ -49,54 +49,85 @@ include('slider.php')
   </label>
 </div><br>
 
+ <div class="arrivals" id="arrivals">
+        <h2>Books Available</h2>
+        <div class="arrivals_box">
+            <?php
+            // Check if search query is set
+            if(isset($_GET['search'])  &&  !empty($_GET['search'])) {
+                $search = $_GET['search'];
+                // Modify your SQL query to search by book title
+                $sql = "SELECT * FROM livres WHERE Titre_Article LIKE '%$search%' ";
+                $result = mysqli_query($conn, $sql);
+                // Loop through search results and display
+                while ($ligne = mysqli_fetch_array($result)) {?>
 
-<div class="arrivals" id="arrivals">
-        <h2>livres Disponibles</h2>
-        
-    
-<div class="arrivals_box">
-
-       <?php while ($ligne = mysqli_fetch_array($result)) {
-       
-    ?>
-         
-
-            <div class="arrivals_card">
-                <div class="arrivals_image">
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['image']); ?>">
-                </div>
-                <div class="arrivals_tag">
-                    <p>  <?php echo $ligne['Titre_Article'];?></p>
-                    <div class="arrivals_icon">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
+                    
+                    <div class="arrivals_card">
+                    <div class="arrivals_image">
+                        <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['image']); ?>">
                     </div>
-                    <form action="page-info.php" method="post">
-                  <input class="arrivals_btn" type="submit" name="submit" value="Savoir plus">
-                <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
+                    <div class="arrivals_tag">
+                        <p>  <?php echo $ligne['Titre_Article'];?></p>
+                        <div class="arrivals_icon">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <form action="page-info.php" method="post">
+                      <input class="arrivals_btn" type="submit" name="submit" value="Savoir plus">
+                    <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
+    
+                      
+    
+                    </form>
+                    </div>
+                
+                </div>
+                   <?php
+                }
+            } else {
+                $sql = "select * from livres LIMIT  $start, $row_per_page";
+                $result = mysqli_query($conn,$sql);
 
+                // If no search query, display all books as before
+                while ($ligne = mysqli_fetch_array($result)) {?>
                   
 
-                </form>
+                    <div class="arrivals_card">
+                    <div class="arrivals_image">
+                        <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['image']); ?>">
+                    </div>
+                    <div class="arrivals_tag">
+                        <p>  <?php echo $ligne['Titre_Article'];?></p>
+                        <div class="arrivals_icon">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <form action="page-info.php" method="post">
+                      <input class="arrivals_btn" type="submit" name="submit" value="Savoir plus">
+                    <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
+    
+                      
+    
+                    </form>
+                    </div>
+                
                 </div>
-            
-            </div>
-            <?php
-        }
-        ?>
+<?php
+                }
+            }
+            ?>
         </div>
+    </div>
 
 
 
-
-
-
-
-        
-</div>
         <div class="page-info">
        
             <?php
@@ -122,7 +153,7 @@ affiche <?php echo $_GET['page-nr']?>  sur <?php echo $pages ?>
             } else {
             ?>
 
-                <a class="pagi" href="">previous</a>
+               
             <?php
 
             }
@@ -152,22 +183,22 @@ affiche <?php echo $_GET['page-nr']?>  sur <?php echo $pages ?>
 
             <?php
 
-            if (!isset($GET['page-nr'])) {
+            if (!isset($_GET['page-nr'])) {
             ?>
 
                 <a class="pagi" href="?page-nr=2#arrivals">Next</a>
                 <?php
             } else {
 
-                if ($GET['page-nr'] >= $pages) { ?>
+                if ($_GET['page-nr'] >= $pages) { ?>
 
-                    <a>Next</a>
+                    
 
                 <?php
 
                 } else {
                 ?>
-                    <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>#arrivals">next</a>
+                    <a class="pagi" href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>#arrivals">Next</a>
 
             <?php
                 }
@@ -188,7 +219,7 @@ affiche <?php echo $_GET['page-nr']?>  sur <?php echo $pages ?>
 
 
 
-    </section>
+  
 
 
 

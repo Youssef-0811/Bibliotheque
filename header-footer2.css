@@ -95,92 +95,130 @@ header nav li a{
 header nav li a:hover{
   color: #089da1;
 }
+
+
 /* search */
-.social_icon {
+
+.search {
+  --input-line: #cccccc;
+  --input-text-color: #808080;
+  --input-text-hover-color: transparent;
+  --input-border-color: #808080;
+  --input-border-hover-color: #999999;
+  --input-bg-color: #333333;
+  --search-max-width: 250px;
+  --search-min-width: 150px;
+  --border-radius: 5px;
+  --transition-cubic-bezier: 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.search-box {
+  max-width: var(--search-max-width);
+  min-width: var(--search-min-width);
+  height: 35px;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--border-radius);
+  padding: 5px 15px;
+  background: var(--input-bg-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: var(--transition-cubic-bezier);
+}
+
+.search-box:hover {
+  border-color: var(--input-border-hover-color);
+}
+
+/*Section input*/
+.search-field {
   position: relative;
-  box-sizing: border-box;
-  width: fit-content;
-}
-
-.mainbox {
-  box-sizing: border-box;
-  position: relative;
-  width: 260px;
-  height: 50px;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: center;
-  border-radius: 160px;
-  background-color: rgb(0, 0, 0);
-  transition: all 0.3s ease;
-}
-
-.checkbox:focus {
-  border: none;
-  outline: none;
-}
-
-.checkbox:checked {
-  right: 10px;
-}
-
-.checkbox:checked ~ .mainbox {
-  width: 50px;
-}
-
-.checkbox:checked ~ .mainbox .search_input {
-  width: 0;
-  height: 0px;
-}
-
-.checkbox:checked ~ .mainbox .iconContainer {
-  padding-right: 11px;
-}
-
-.checkbox {
-  box-sizing: border-box;
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  right: 17px;
-  top: 10px;
-  z-index: 9;
-  cursor: pointer;
-  appearance: none;
-}
-
-.search_input {
-  box-sizing: border-box;
+  width: 100%;
   height: 100%;
-  width: 210px;
-  background-color: transparent;
-  border: none;
+  left: -5px;
+  border: 0;
+}
+
+.input {
+  width: calc(100% - 29px);
+  height: 100%;
+  border: 0;
+  border-color: transparent;
+  font-size: 1rem;
+  padding-right: 0px;
+  color: var(--input-line);
+  background: var(--input-bg-color);
+  border-right: 2px solid var(--input-border-color);
   outline: none;
-  padding-bottom: 4px;
-  padding-left: 10px;
-  font-size: 1em;
-  color: white;
-  transition: all 0.3s ease;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.search_input::placeholder {
-  color: rgba(255, 255, 255, 0.776);
+.input::-webkit-input-placeholder {
+  color: var(--input-text-color);
 }
 
-.iconContainer {
-  box-sizing: border-box;
-  padding-top: 5px;
-  width: fit-content;
-  transition: all 0.3s ease;
+.input::-moz-input-placeholder {
+  color: var(--input-text-color);
 }
 
-.search_icon {
-  box-sizing: border-box;
-  fill: white;
-  font-size: 1.3em;
+.input::-ms-input-placeholder {
+  color: var(--input-text-color);
 }
+
+.input:focus::-webkit-input-placeholder {
+  color: var(--input-text-hover-color);
+}
+
+.input:focus::-moz-input-placeholder {
+  color: var(--input-text-hover-color);
+}
+
+.input:focus::-ms-input-placeholder {
+  color: var(--input-text-hover-color);
+}
+
+/*Search button*/
+.search-box-icon {
+  width: 52px;
+  height: 35px;
+  position: absolute;
+  top: 0px;
+  right: -21px;
+  background: transparent;
+  border-bottom-right-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  transition: var(--transition-cubic-bezier);
+}
+
+.search-box-icon:hover {
+  background: var(--input-border-color);
+}
+
+.btn-icon-content {
+  width: 52px;
+  height: 35px;
+  top: -2px;
+  right: -21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-bottom-right-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  transition: var(--transition-cubic-bezier);
+  opacity: .4;
+}
+
+.btn-icon-content:hover {
+  opacity: .8;
+}
+
+.search-icon {
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+
+
+
 
 
 

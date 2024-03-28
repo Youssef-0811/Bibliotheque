@@ -22,7 +22,6 @@ include('DataBase.php');
 .container2{
     position: relative;
     left:50%;
-    top:50%;
     transform: translate(-50%,-50%);
     width:90%;
     height:27rem;
