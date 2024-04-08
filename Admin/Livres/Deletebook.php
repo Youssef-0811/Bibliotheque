@@ -1,6 +1,6 @@
 <?php
 // Include the database connection file
-include("DataBase.php");
+include("../../DataBase.php");
 
 // Check if livre ID is set and not empty
 if (isset($_GET['id']) && !empty($_GET['id'])) {

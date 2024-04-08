@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-include("DataBase.php");
+include("../../DataBase.php");
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,10 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Upload image
-    $image = $_FILES["image"];
-    $imageType = pathinfo($image["name"], PATHINFO_EXTENSION);
-    $imageData = file_get_contents($image["tmp_name"]);
-    $base64Image = 'data:image/' . $imageType . ';base64,' . base64_encode($imageData);
+    $imageTmp = $_FILES['image']['tmp_name'];
+    $imageData = file_get_contents($imageTmp); // No need for addslashes here
+    $imageType = $_FILES['image']['type'];
 
     // Prepare SQL statement to insert data into livres table
     $sql = "INSERT INTO livres (Titre, auteur_id, Genre_Id, Format_Id, Nbr_pages, Parution, ISBN, Resume, Image, ImageType)
@@ -32,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare and bind parameters
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("siisiiisss", $title, $authorId, $genreId, $formatId, $countPages, $releaseDate, $isbn, $resume, $base64Image, $imageType);
+    $stmt->bind_param("siisiiisss", $title, $authorId, $genreId, $formatId, $countPages, $releaseDate, $isbn, $resume, $imageData, $imageType);
 
     // Execute the query
     if ($stmt->execute()) {

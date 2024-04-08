@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-include("DataBase.php");
+include("../../DataBase.php");
 
 // Check if the author ID is provided in the URL parameter
 if (isset($_GET['id'])) {

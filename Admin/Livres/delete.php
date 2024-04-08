@@ -1,7 +1,7 @@
 <?php
 
 
-include("DataBase.php");
+include("../../DataBase.php");
 
 
 // Check if the form is submitted

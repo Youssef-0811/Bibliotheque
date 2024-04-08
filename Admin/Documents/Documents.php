@@ -16,9 +16,36 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="../../css/sb-admin-2.css" rel="stylesheet">
 
 </head>
+
+<?php
+session_start(); // Start the session
+
+// Check if admin is logged in, if not redirect to login page
+if (!isset($_SESSION['admin_id']) || empty($_SESSION['admin_id'])) {
+    header("Location: ../../AdminLogin.php");
+    exit();
+}
+
+// Retrieve admin's name and image URL from session variables
+$admin_name = $_SESSION['admin_name'];
+// Retrieve admin's image URL from session variable
+$admin_image_url = isset($_SESSION['admin_image']) ? $_SESSION['admin_image'] : "images\avatar icon.png"; // Provide a default image URL if admin image is not set
+
+?>
+<style>
+    /* CSS to hide the dropdown initially */
+    .dropdown-menu {
+        display: none;
+    }
+
+    /* CSS to show the dropdown when hovering over the admin's name or image */
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+    }
+</style>
 
 <body id="page-top">
 
@@ -41,7 +68,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="../AdminDash.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Tableau de bord</span></a>
             </li>
@@ -55,23 +82,28 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="Book.php">
+            <li class="nav-item ">
+                <a class="nav-link" href="../Livres/Book.php">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Livres</span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="../Documents/Documents.php">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Documents</span></a>
+            </li>
             <li class="nav-item">
-                <a class="nav-link" href="Auteur.php">
+                <a class="nav-link" href="../Auteurs/Auteur.php">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Auteurs</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Genre.php">
+                <a class="nav-link" href="../Genres/Genre.php">
                     <i class="fas fa-fw fa-swatchbook"></i>
                     <span>Genres</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Format.php">
+                <a class="nav-link" href="../Format/Format.php">
                     <i class="fas fa-fw fa-align-left"></i>
                     <span>Formats</span></a>
             </li>
@@ -98,16 +130,23 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="https://www.linkedin.com/in/aude-velly-menut/" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-lg-inline text-gray-600 small">Aude Velly Menut</span>
-                                <img class="img-profile rounded-circle" src="https://media.licdn.com/dms/image/C4E03AQFiMuNDUqxhVQ/profile-displayphoto-shrink_100_100/0?e=1564617600&v=beta&t=NEstICqg4IbD-Kczp066VDKb9VpMGa7gJ_fmRm6FLU4">
+                        <li class="nav-item dropdown no-arrow" style="margin-right: 10px;">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-lg-inline text-gray-600 "><?php echo $admin_name; ?></span>
+                                <!-- <img class="img-profile rounded-circle" src="<?php echo $admin_image_url; ?>"> -->
                             </a>
-
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="../Deconexion.php">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Deconnexion
+                                </a>
+                                <a class="dropdown-item" href="../Deconexion.php">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Compte
+                                </a>
+                            </div>
                         </li>
-
                     </ul>
 
                 </nav>
@@ -173,11 +212,11 @@
                         </div>
                     </div>
 
-                    <div class="container-fluid">
+                    <div class="container-fluid" style="padding-right: 0px;padding-left: 0px;">
                         <!-- Page Heading -->
                         <div class="card border-left-primary shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Les livres disponibles</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Les Documents disponibles</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -192,12 +231,13 @@
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="books">
+                                        <!-- <tbody id="books">
                                             <?php
+                                            include("../../DataBase.php");
                                             // Include the FetchB.php file to fetch livre data
                                             include("FetchB.php");
                                             ?>
-                                        </tbody>
+                                        </tbody> -->
                                     </table>
                                 </div>
                             </div>
@@ -232,7 +272,7 @@
                                     <select class="form-control" id="authorBook" name="authorBook">
                                         <option value="">Choisissez un auteur</option>
                                         <?php
-                                        include("DataBase.php");
+                                        include("../../DataBase.php");
                                         // Fetch authors from the database
                                         $sqlAuthors = "SELECT * FROM auteurs";
                                         $resultAuthors = $conn->query($sqlAuthors);
@@ -249,7 +289,7 @@
                                     <select class="form-control" id="genreBook" name="genreBook">
                                         <option value="">Choisissez un genre</option>
                                         <?php
-                                        include("DataBase.php");
+                                        include("../../DataBase.php");
                                         // Fetch genres from the database
                                         $sqlGenres = "SELECT * FROM genre";
                                         $resultGenres = $conn->query($sqlGenres);
@@ -337,7 +377,7 @@
 
             deleteButton.onclick = function() {
                 // Redirect to the delete script with livre ID
-                window.location.href = "DeleteBook.php?id=" + livreId;
+                window.location.href = "./DeleteBook.php?id=" + livreId;
             }
 
             cancelButton.onclick = function() {
@@ -355,6 +395,180 @@
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content" style="margin: 5% auto;">
+            <span class="close">&times;</span>
+            <h2>Edit Book</h2>
+            <form id="editForm" action="EditBook.php" method="post" enctype="multipart/form-data">
+                <!-- Hidden input for book ID -->
+                <input type="hidden" id="editBookId" name="editBookId">
+
+
+
+                <div class="d-flex align-items-center mb-3">
+                    <div>
+                        <label for="currentImage">Current Image</label>
+                        <img id="currentImage" src="<?php echo $currentImageUrl; ?>" width="150" class="img-fluid rounded" alt="Current Image">
+                    </div>
+                    <!-- Input field to choose an image -->
+                    <div class="ml-3">
+                        <label for="editImage">Choose an image</label>
+                        <input type="file" class="form-control-file" id="editImage" name="editImage" accept="image/*">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editTitre">Titre</label>
+                    <input type="text" class="form-control" id="editTitre" name="editTitre">
+                </div>
+                <div class="form-group">
+                    <label for="editAuteurId">Auteur</label>
+                    <select class="form-control" id="editAuteurId" name="editAuteurId">
+                        <option value="">Choisissez un auteur</option>
+                        <?php
+                        // Fetch authors from the database
+                        $sqlAuthors = "SELECT * FROM auteurs";
+                        $resultAuthors = $conn->query($sqlAuthors);
+                        if ($resultAuthors->num_rows > 0) {
+                            while ($rowAuthor = $resultAuthors->fetch_assoc()) {
+                                echo "<option value='" . $rowAuthor['Id'] . "'>" . $rowAuthor['Nom'] . " " . $rowAuthor['Prenom'] . "</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="editGenreId">Genre</label>
+                    <select class="form-control" id="editGenreId" name="editGenreId">
+                        <option value="">Choisissez un genre</option>
+                        <?php
+                        include("../../DataBase.php");
+                        // Fetch genres from the database
+                        $sqlGenres = "SELECT * FROM genre";
+                        $resultGenres = $conn->query($sqlGenres);
+                        if ($resultGenres->num_rows > 0) {
+                            while ($rowGenre = $resultGenres->fetch_assoc()) {
+                                // Set the value of each option to the ID and display the name
+                                echo "<option value='" . $rowGenre['Id'] . "'>" . $rowGenre['nom'] . "</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="editFormatId">Format</label>
+                    <select class="form-control" id="editFormatId" name="editFormatId">
+                        <option value="">Choisissez un format</option>
+                        <?php
+                        // Fetch formats from the database
+                        $sqlFormats = "SELECT * FROM format";
+                        $resultFormats = $conn->query($sqlFormats);
+                        if ($resultFormats->num_rows > 0) {
+                            while ($rowFormat = $resultFormats->fetch_assoc()) {
+                                echo "<option value='" . $rowFormat['Id'] . "'>" . $rowFormat['Nom'] . "</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="editNbrPages">Nombre de pages</label>
+                    <input type="text" class="form-control" id="editNbrPages" name="editNbrPages">
+                </div>
+                <div class="form-group">
+                    <label for="editParution">Parution</label>
+                    <input type="text" class="form-control" id="editParution" name="editParution">
+                </div>
+                <div class="form-group">
+                    <label for="editISBN">ISBN</label>
+                    <input type="text" class="form-control" id="editISBN" name="editISBN">
+                </div>
+                <div class="form-group">
+                    <label for="editResume">Résumé</label>
+                    <textarea class="form-control" id="editResume" name="editResume"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
+            </form>
+        </div>
+    </div>
+    <!-- End Edit Modal -->
+
+    <script>
+
+    </script>
+
+
+
+
+    <script>
+        // Function to toggle author dropdown
+        function toggleAuthorDropdown() {
+            var currentAuthor = document.getElementById('currentAuthor');
+            var authorDropdown = document.getElementById('authorBook');
+
+            if (currentAuthor.style.display === 'none') {
+                currentAuthor.style.display = 'inline';
+                authorDropdown.style.display = 'none';
+            } else {
+                currentAuthor.style.display = 'none';
+                authorDropdown.style.display = 'inline';
+            }
+        }
+
+        // Function to toggle genre dropdown
+        function toggleGenreDropdown() {
+            var currentGenre = document.getElementById('currentGenre');
+            var genreDropdown = document.getElementById('genreBook');
+
+            if (currentGenre.style.display === 'none') {
+                currentGenre.style.display = 'inline';
+                genreDropdown.style.display = 'none';
+            } else {
+                currentGenre.style.display = 'none';
+                genreDropdown.style.display = 'inline';
+            }
+        }
+
+        // Function to toggle format dropdown
+        function toggleFormatDropdown() {
+            var currentFormat = document.getElementById('currentFormat');
+            var formatDropdown = document.getElementById('formatBook');
+
+            if (currentFormat.style.display === 'none') {
+                currentFormat.style.display = 'inline';
+                formatDropdown.style.display = 'none';
+            } else {
+                currentFormat.style.display = 'none';
+                formatDropdown.style.display = 'inline';
+            }
+        }
+
+        // Close the modal when the user clicks outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('editBookModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Close the modal when the user clicks the close button
+        var closeButton = document.getElementById('editBookClose');
+        if (closeButton) {
+            closeButton.onclick = function() {
+                var modal = document.getElementById('editBookModal');
+                if (modal) {
+                    modal.style.display = 'none';
                 }
             }
         }

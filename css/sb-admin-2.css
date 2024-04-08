@@ -12021,7 +12021,7 @@
     /* Modal styles */
     .modal {
         display: none;
-        position: fixed;
+        position:absolute;
         z-index: 1;
         left: 0;
         top: 0;
@@ -12068,3 +12068,92 @@
         }
     }
 
+
+
+
+/* Style for labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+  /* Adjust color as needed */
+  font-size: 16px;
+  /* Adjust font size as needed */
+}
+
+
+/* Style for input fields */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  /* Adjust font size as needed */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Modal styles */
+.modalEdit {
+  display: none;
+  position:absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+}
+
+.modalEdit-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* Adjust this value to move the modal up or down */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Adjust the width as needed */
+  max-width: 500px; /* Maximum width of the modal */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: modalopen;
+  animation-duration: 0.4s;
+  border-radius: 0.3rem;
+}
+
+/* Modal close button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Modal animation */
+@keyframes modalopen {
+  from {
+      opacity: 0
+  }
+  to {
+      opacity: 1
+  }
+}

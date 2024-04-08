@@ -25,11 +25,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         // Start session and store user ID
         session_start();
-        $_SESSION['user_id'] = $username; // Store username or any unique identifier for the user
+        if ($row = mysqli_fetch_assoc($result)) {
+            $_SESSION['ID'] = $row['ID'];
 
-        // Redirect to accueil.php
-        header("Location: ../../accueil.php");
-        exit(); // Terminate script to ensure redirection happens
+            $_SESSION['user_id'] = $username;
+            // Store username or any unique identifier for the user
+
+            // Redirect to accueil.php
+            header("Location: ../../accueil.php");
+            exit(); // Terminate script to ensure redirection happens
+        }
     } else {
         // No user found, set error message
         $error = "Invalid username or password";

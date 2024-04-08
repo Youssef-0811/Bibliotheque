@@ -197,7 +197,7 @@
                                                     <td><?php echo $row['DateNaissance']; ?></td>
                                                     <td>
                                                         <!-- Lien d'édition avec l'ID de l'auteur -->
-                                                        <a href="EditAuteur.php">Edit</a>
+                                                        <a href="EditAuteur.php">open</a>
                                                     </td>
                                                 </tr>
                                         <?php

@@ -85,14 +85,14 @@ border-radius: 2rem;
  }
  
  @media (max-width: 600px) {
-   .arrivals .arrivals_box{
+   .arrivals .arrivals_box {
      grid-template-columns: 1fr;
      justify-content: center;
    }
  }
 
 .arrivals .arrivals_box .arrivals_card{
-   width: 250px;
+  
    height: 340px;
    text-align: center;
    padding: 5px;
@@ -151,7 +151,7 @@ border-radius: 2rem;
 
 .about_image img {
    width: 100%;
-   max-width: 800px;
+   max-width: 600px;
 }
 
 .about_tag h1 {
@@ -161,7 +161,7 @@ border-radius: 2rem;
 
 .about_tag p {
    line-height: 1.6;
-   max-width: 650px;
+   max-width: 800px;
 }
 
 .about_btn {

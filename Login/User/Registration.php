@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" href="../loginstyles.css">
+    <link rel="stylesheet" type="text/css" href="../../loginstyles.css">
 </head>
 
 <body>
@@ -36,7 +36,7 @@
             <input type="password" id="password" name="password" required><br>
             <input type="submit" value="Register">
 
-            <button><a href="../accueil.php">Retour</a></button>
+            <button><a href="../../accueil.php">Retour</a></button>
 
 
         </form>

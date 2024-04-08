@@ -1,5 +1,5 @@
 <?php
-include("DataBase.php");
+include("../../DataBase.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $Nom = $_POST['nom'];
