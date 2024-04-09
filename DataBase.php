@@ -2,7 +2,7 @@
 $db_SERVER = 'localhost';
 $db_user = 'root';
 $db_pass = '';
-$db_name = 'bibliotheque1';
+$db_name = 'bibliotheque';
 
 try {
 

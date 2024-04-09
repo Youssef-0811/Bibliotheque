@@ -1,9 +1,17 @@
-<?php include('DataBase.php')
+<?php include('DataBase.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitauteur'])) {
 
 
-?>
+$id_auteur = $_POST['idauteur'];
 
 
+$sql = "SELECT * FROM auteurs Where id =  $id_auteur ";
+
+$result = mysqli_query($conn,$sql);
+
+$ligne = mysqli_fetch_assoc($result);
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,14 +36,15 @@
 
 
 <body>
-    
-<div class="image">
+<?php if ( $result && mysqli_num_rows($result) > 0) {?>
 
-<img src="images/15034229 (1).webp" alt="">
+<div class="image">
+    
+<img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']); ?>">
 <div class="info">
-<P>Nom: auteur</P>
-<p>Prenom: auteur</p>
-<p>age: 66ans</p>
+<P>Nom:  <?php echo $ligne['Nom'];?> </P>
+<p>Prenom:  <?php echo $ligne['Prenom'];?></p>
+<p>age:  <?php echo $ligne['DateNaissance'];?></p>
 <p>Nationalite: Marrocain</p>
 </div>
 
@@ -53,70 +62,58 @@ En 1864, Mark Twain travaille √† San Francisco en tant que reporter et voyage r√
 </div>
 </div>
 
-
+<?php } ?>
 
 
 <div class="livres">
 
 <?php
-$query = "select * from livres;";
-$result = mysqli_query($conn,$query);
-
+$queryLiv = "SELECT * FROM livres;";
+$resultLiv = mysqli_query($conn,$queryLiv);
 ?>
-        <h2>livres</h2>
-        <div class="arrivals_box">
-
-            <?php while ($ligne = mysqli_fetch_array($result)) {
-
-            ?>
-
-
-                <div class="arrivals_card">
-                    <div class="arrivals_image">
-                        <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['image']); ?>">
-                    </div>
-                    <div class="arrivals_tag">
-                        <p> <?php echo $ligne['Titre_Article']; ?> </p>
-                        <div class="arrivals_icon">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                        </div>
-                        <a href="#" class="arrivals_btn">Learn More</a>
-                    </div>
+<h2>livres</h2>
+<div class="arrivals_box">
+    <?php while ($ligne = mysqli_fetch_array($resultLiv)) { ?>
+        <div class="arrivals_card">
+            <div class="arrivals_image">
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']); ?>">
+            </div>
+            <div class="arrivals_tag">
+                <p> <?php echo $ligne['Titre']; ?> </p>
+                <div class="arrivals_icon">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
                 </div>
-            <?php
-            }
-            ?>
+                <form action="page-info.php" method="post">
+                                <input class="arrivals_btn" type="submit" name="submitLiv" value="Savoir plus">
+                                <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
+                            </form>
+            </div>
         </div>
+    <?php } ?>
 </div>
 
 
 
-
 <div class="livres">
 
 <?php
-$query = "select * from livres;";
-$result = mysqli_query($conn,$query);
-
+$queryLiv = "select * from livres;";
+$resultLiv = mysqli_query($conn,$queryLiv);
 ?>
         <h2>livres de meme genre</h2>
         <div class="arrivals_box">
-
-            <?php while ($ligne = mysqli_fetch_array($result)) {
-
+            <?php while ($ligne = mysqli_fetch_array($resultLiv)) {
             ?>
-
-
                 <div class="arrivals_card">
                     <div class="arrivals_image">
-                        <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['image']); ?>">
+                        <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']); ?>">
                     </div>
                     <div class="arrivals_tag">
-                        <p> <?php echo $ligne['Titre_Article']; ?> </p>
+                        <p> <?php echo $ligne['Titre']; ?> </p>
                         <div class="arrivals_icon">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -124,7 +121,10 @@ $result = mysqli_query($conn,$query);
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
                         </div>
-                        <a href="#" class="arrivals_btn">Learn More</a>
+                        <form action="page-info.php" method="post">
+                                <input class="arrivals_btn" type="submit" name="submitLiv" value="Savoir plus">
+                                <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
+                            </form>
                     </div>
                 </div>
             <?php
@@ -138,6 +138,7 @@ $result = mysqli_query($conn,$query);
 
 </body>
 <?php
-include('HF/footer.php')
+include('HF/footer.php');
 ?>
+
 </html>

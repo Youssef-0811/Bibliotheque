@@ -130,20 +130,20 @@ $resulta = mysqli_query($conn, $sqla);
         </div>
         <div class="about_tag">
             <h1>Apropos de nous</h1>
-            <p>
-                <b>Bienvenue à la Bibliothèque ONLINE</b> <br>
+            <p> 
+          <b>Bienvenue à la Bibliothèque ONLINE</b> <br>
 
-                Dans un coin paisible de la ville, se trouve un lieu enchanté où les mots prennent vie et les esprits s'évadent : la <b>Bibliothèque ONLINE</b>. Au cœur de cette oasis littéraire, un service d'emprunt de livres vous attend, ouvert à tous les avides de découvertes et de voyages au-delà des pages.
+Dans un coin paisible de la ville, se trouve un lieu enchanté où les mots prennent vie et les esprits s'évadent : la <b>Bibliothèque ONLINE</b>. Au cœur de cette oasis littéraire, un service d'emprunt de livres vous attend, ouvert à tous les avides de découvertes et de voyages au-delà des pages.
 
-                Plongez dans un monde de possibilités infinies où chaque rayonnage recèle des trésors à découvrir. Notre système d'emprunt simple et convivial vous permet de choisir parmi une vaste sélection d'œuvres, des classiques intemporels aux nouveautés palpitantes.
+Plongez dans un monde de possibilités infinies où chaque rayonnage recèle des trésors à découvrir. Notre système d'emprunt simple et convivial vous permet de choisir parmi une vaste sélection d'œuvres, des classiques intemporels aux nouveautés palpitantes.
 
-                Comment ça fonctionne ? C'est facile ! Il vous suffit de vous inscrire en tant que membre, et le monde des mots s'ouvre à vous. Parcourez les étagères, laissez-vous envoûter par les résumés alléchants et les couvertures intrigantes, puis sélectionnez les joyaux littéraires qui vous appellent.
+Comment ça fonctionne ? C'est facile ! Il vous suffit de vous inscrire en tant que membre, et le monde des mots s'ouvre à vous. Parcourez les étagères, laissez-vous envoûter par les résumés alléchants et les couvertures intrigantes, puis sélectionnez les joyaux littéraires qui vous appellent.
 
-                Une fois votre choix fait, présentez-vous au comptoir de prêt, où notre équipe chaleureuse et compétente vous accueillera avec le sourire. Ils vous aideront à finaliser votre emprunt et répondront à toutes vos questions avec plaisir.
+Une fois votre choix fait, présentez-vous au comptoir de prêt, où notre équipe chaleureuse et compétente vous accueillera avec le sourire. Ils vous aideront à finaliser votre emprunt et répondront à toutes vos questions avec plaisir.
 
-                Que vous soyez un voyageur chevronné à travers les mondes imaginaires, un explorateur des mystères du passé ou un aventurier à la recherche de connaissances nouvelles,<b>La Bibliothèque ONLINE</b> est votre partenaire idéal dans cette quête infinie de savoir et de divertissement.
+Que vous soyez un voyageur chevronné à travers les mondes imaginaires, un explorateur des mystères du passé ou un aventurier à la recherche de connaissances nouvelles,<b>La Bibliothèque ONLINE</b> est votre partenaire idéal dans cette quête infinie de savoir et de divertissement.
 
-                Rejoignez-nous dès aujourd'hui et laissez-vous emporter par la magie des livres à la <b>Bibliothèque ONLINE</b> .
+Rejoignez-nous dès aujourd'hui et laissez-vous emporter par la magie des livres à la <b>Bibliothèque ONLINE</b> .
             </p>
             <a href="#" class="about_btn">Learn More</a>
         </div>
@@ -173,12 +173,12 @@ $resulta = mysqli_query($conn, $sqla);
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
                         </div>
-
+                        
                         <form action="page-info.php" method="post">
-                            <input class="arrivals_btn" type="submit" name="submitLiv" value="Savoir plus">
-                            <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
+                  <input class="arrivals_btn" type="submit" name="submitLiv" value="Savoir plus">
+                <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
 
-                        </form>
+                </form>
 
                     </div>
                 </div>
@@ -186,9 +186,9 @@ $resulta = mysqli_query($conn, $sqla);
             }
             ?>
         </div>
-    </div>
+</div>
 
-    <div class="arrivals">
+<div class="arrivals">
         <h2>Auteurs</h2>
         <div class="arrivals_box">
 
@@ -202,17 +202,17 @@ $resulta = mysqli_query($conn, $sqla);
                         <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']); ?>">
                     </div>
                     <div class="arrivals_tag">
-                        <p> <?php echo $ligne['Nom'];
-                            echo $ligne['Prenom']; ?> </p>
+                        <p> <?php echo $ligne['Nom']; 
+                        echo $ligne['Prenom']; ?> </p>
 
                         <form action="voirauteur.php" method="post">
 
-                            <input type="hidden" name="idauteur" value=" <?php echo $ligne['Id']; ?>">
+                        <input type="hidden" name="idauteur" value=" <?php echo $ligne['Id']; ?>">
 
-                            <input class="arrivals_btn" type="submit" name="submitauteur" value="Savoir plus">
+                        <input class="arrivals_btn" type="submit" name="submitauteur" value="Savoir plus">
                         </form>
 
-
+            
 
                     </div>
                 </div>
@@ -220,7 +220,7 @@ $resulta = mysqli_query($conn, $sqla);
             }
             ?>
         </div>
-    </div>
+</div>
 </body>
 <?php
 include('HF/footer.php')

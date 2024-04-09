@@ -41,34 +41,34 @@ include('pagination.php');
 
 
     <div class="selectdiv">
-        <form id="categoryForm" action="index.php" method="GET">
+        <form id="categoryForm" action="index.php" method="GET" >
             <label>
                 <select name="Categorie" onchange="submitForm()">
                     <option selected> Select Categorie </option>
                     <?php
-                    // Fetch categories from database
-                    $sql = "SELECT Nom FROM format";
-                    $result = $conn->query($sql);
+            // Fetch categories from database
+            $sql = "SELECT Nom FROM format";
+            $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                        // Output data of each row
-                        while ($ligne = mysqli_fetch_array($result)) {
-                            echo "<option>" . $ligne["Nom"] . "</option>"; ?>
-
-
-                    <?php
-                        }
-                    }
-                    ?>
+            if ($result->num_rows > 0) {
+                // Output data of each row
+                while ($ligne = mysqli_fetch_array($result)) {
+             echo "<option>".$ligne["Nom"]."</option>";?>
+         
+                 
+<?php           
+                }
+            }
+            ?>
                 </select>
             </label>
         </form>
     </div>
     <script>
-        function submitForm() {
-            document.getElementById("categoryForm").submit();
-        }
-    </script>
+    function submitForm() {
+        document.getElementById("categoryForm").submit();
+    }
+</script>
     <br>
 
     <div class="arrivals" id="arrivals">
@@ -87,7 +87,7 @@ include('pagination.php');
 
                     <div class="arrivals_card">
                         <div class="arrivals_image">
-                            <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']); ?>" alt="<?php echo $ligne['Titre']; ?>">
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']);?>" alt="<?php echo $ligne['Titre'];?>">
                         </div>
                         <div class="arrivals_tag">
                             <p> <?php echo $ligne['Titre']; ?></p>
@@ -107,46 +107,48 @@ include('pagination.php');
                     </div>
                 <?php
                 }
-            } else if (isset($_GET['Categorie'])) {
+            }
+            else if (isset($_GET['Categorie'])) {
                 // Check if a category has been selected
+                
+                    $selected_category = $_GET['Categorie'];
 
-                $selected_category = $_GET['Categorie'];
-
-                $sql = "SELECT * FROM livres 
+                    $sql = "SELECT * FROM livres 
                     JOIN format on format.Id = livres.Format_Id
                     where format.Nom ='$selected_category'";
 
-                $result = mysqli_query($conn, $sql);
+                    $result = mysqli_query($conn, $sql);
 
-                while ($ligne = mysqli_fetch_array($result)) { ?>
+                    while ($ligne = mysqli_fetch_array($result)) { ?>
 
 
-                    <div class="arrivals_card">
-                        <div class="arrivals_image">
-                            <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']); ?>" alt="<?php echo $ligne['Titre']; ?>">
-                        </div>
-                        <div class="arrivals_tag">
-                            <p> <?php echo $ligne['Titre']; ?></p>
-                            <div class="arrivals_icon">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
+                        <div class="arrivals_card">
+                            <div class="arrivals_image">
+                                <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']); ?>"alt="<?php echo $ligne['Titre'];?>">
                             </div>
-                            <form action="page-info.php" method="post">
-                                <input class="arrivals_btn" type="submit" name="submitLiv" value="Savoir plus">
-                                <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
-                            </form>
+                            <div class="arrivals_tag">
+                                <p> <?php echo $ligne['Titre']; ?></p>
+                                <div class="arrivals_icon">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                </div>
+                                <form action="page-info.php" method="post">
+                                    <input class="arrivals_btn" type="submit" name="submitLiv" value="Savoir plus">
+                                    <input type="hidden" name="id-livre" value=" <?php echo $ligne['Numero']; ?>">
+                                </form>
+                            </div>
+    
                         </div>
+      
+                    <?php
+                    
 
-                    </div>
+                    }
 
-                <?php
-
-
-                }
-            } else {
+                } else {
                 $sql = "select * from livres LIMIT  $start, $row_per_page";
                 $result = mysqli_query($conn, $sql);
 
@@ -156,7 +158,7 @@ include('pagination.php');
 
                     <div class="arrivals_card">
                         <div class="arrivals_image">
-                            <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']); ?>" alt="<?php echo $ligne['Titre']; ?>">
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($ligne['Image']); ?>" alt="<?php echo $ligne['Titre'];?>">
                         </div>
                         <div class="arrivals_tag">
                             <p> <?php echo $ligne['Titre']; ?></p>
