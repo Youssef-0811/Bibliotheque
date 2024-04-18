@@ -103,7 +103,14 @@ $admin_image_url = isset($_SESSION['admin_image']) ? $_SESSION['admin_image'] : 
                     <i class="fas fa-fw fa-align-left"></i>
                     <span>Formats</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../Admin/ConfirmEmprunt/Comfirmemprunt.php">
+                    <i class="fas fa-fw fa-align-left"></i>
+                    <span>Confirm Emprunt</span></a>
+            </li>
         </ul>
+
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -156,7 +163,7 @@ $admin_image_url = isset($_SESSION['admin_image']) ? $_SESSION['admin_image'] : 
                     <div class="row">
 
                         <?php
-                        include("../../DataBase.php");
+                        include("../DataBase.php");
                         $query = "SELECT * FROM livres ORDER BY Numero DESC LIMIT 3";
                         $result = mysqli_query($conn, $query);
                         // Display the "Livres" heading inside a box with a different color

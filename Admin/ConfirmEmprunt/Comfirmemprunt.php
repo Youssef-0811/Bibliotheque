@@ -14,7 +14,7 @@
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <script src="jquery-3.7.1.min.js"></script>
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.css" rel="stylesheet">
 
@@ -98,12 +98,6 @@ $admin_image_url = isset($_SESSION['admin_image']) ? $_SESSION['admin_image'] : 
                     <i class="fas fa-fw fa-align-left"></i>
                     <span>Formats</span></a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="../../Admin/ConfirmEmprunt/Comfirmemprunt.php">
-                    <i class="fas fa-fw fa-align-left"></i>
-                    <span>Confirm Emprunt</span></a>
-            </li>
         </ul>
         <!-- End of Sidebar -->
 
@@ -120,7 +114,7 @@ $admin_image_url = isset($_SESSION['admin_image']) ? $_SESSION['admin_image'] : 
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <h1 class="h3 text-gray-800">Formats</h1>
+                                <h1 class="h3 text-gray-800">Les Demande D'emprunt</h1>
                             </div>
                         </div>
                     </form>
@@ -155,7 +149,7 @@ $admin_image_url = isset($_SESSION['admin_image']) ? $_SESSION['admin_image'] : 
                     <!-- Page Heading -->
                     <div class="card border-left-primary shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Les formats disponibles</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Les Demande D'emprunt Non confirmer</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -166,15 +160,17 @@ $admin_image_url = isset($_SESSION['admin_image']) ? $_SESSION['admin_image'] : 
                                             <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr role="row">
-                                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 25.5px;" aria-sort="ascending" aria-label="Name: activate to sort column descending"></th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 275.45px;" aria-label="Position: activate to sort column ascending">Nom</th>
-                                                        <th style="width: 150px;">Actions</th> <!-- Add column for actions -->
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 275.45px;" aria-label="Position: activate to sort column ascending">id-client</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 275.45px;" aria-label="Position: activate to sort column ascending">id-emprunt</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 275.45px;" aria-label="Position: activate to sort column ascending">Titre du livre</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 275.45px;" aria-label="Position: activate to sort column ascending">date_d'emprunt</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 275.45px;" aria-label="Position: activate to sort column ascending">date de retour</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="formats">
-                                                    <?php
+                                                <?php
                                                     // Include the FetchA.php file to obtain authors' data
-                                                    include("./FetchF.php");
+                                                    include("./FetchEmp.php");
                                                     ?>
                                                 </tbody>
                                             </table>
@@ -186,20 +182,7 @@ $admin_image_url = isset($_SESSION['admin_image']) ? $_SESSION['admin_image'] : 
 
 
                     </div>
-                    <div class="card border-left-primary shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 id="titleForm" class="m-0 font-weight-bold text-primary">Ajouter un format</h6>
-                        </div>
-                        <div class="card-body">
-                            <form id="addFormatForm" action="AddF.php" method="post">
-                                <div class="form-group">
-                                    <label for="nameFormat">Nom du format</label>
-                                    <input required type="text" class="form-control" id="nameFormat" name="nameFormat">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Valider</button>
-                            </form>
-                        </div>
-                    </div>
+                   
                     <!-- /.container-fluid -->
 
                 </div>
@@ -209,132 +192,153 @@ $admin_image_url = isset($_SESSION['admin_image']) ? $_SESSION['admin_image'] : 
             </div>
             <!-- End of Content Wrapper -->
 
+
+
+
+
+      <div class="container-fluid">
+                     <!-- Page Heading -->
+                        <div class="card border-left-primary shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">les client</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Id_client</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Nom</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">Prenom</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 125.45px;" aria-label="Position: activate to sort column ascending">nombre de livre emprunter</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $sql = "SELECT DISTINCT user.Nom, user.ID,user.Prenom, emprunte_en_attente.id_client FROM user 
+                                            JOIN emprunte_en_attente 
+                                            ON user.ID = emprunte_en_attente.id_client";
+                             
+                                            $result = $conn->query($sql);
+                             
+                             // Check if the query was successful
+                             if ($result && $result->num_rows > 0) {
+                                 // Output data of each row
+                                 while ($row = $result->fetch_assoc()) {
+
+                                   $IDclient = $row['ID'];
+
+                                        $sqlc = "SELECT COUNT(empruntconfirme.id_client) AS total_rows  FROM empruntconfirme WHERE empruntconfirme.id_client= ? ";
+                                        $stmtc = $conn->prepare($sqlc);
+                                        $stmtc->bind_param('s',$IDclient);
+                                        $stmtc->execute();
+                                        $resultc = $stmtc->get_result();
+                                        $rowc = $resultc->fetch_assoc();
+                                           // Extract the count from the result
+                                        $rowCount = $rowc['total_rows'];
+
+                                          
+?>
+                                          <tr>
+                                               <td> <?php echo $IDclient ?></td>
+                                               <td> <?php  echo $row['Nom']; ?></td>
+                                               <td> <?php echo $row['Prenom'];  ?></td>
+                                               <td> <?php echo $rowCount; ?> </td>
+                                          </tr>
+                                        </tbody>
+                                        <?php }} ?>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
         </div>
         <!-- End of Page Wrapper -->
 
 
 
-        <!-- Delete Modal -->
-        <div id="deleteModal" class="modal">
+
+
+        <!-- confirm Modal -->
+        <div id="confirmModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p id="deleteModalText"></p>
+                <p id="confirmempModalText"></p>
                 <div style="text-align: center;">
-                    <button id="deleteButton" class="btn btn-danger">Delete</button>
-                    <button id="cancelDeleteButton" class="btn btn-secondary">Cancel</button>
+                    <button id="confirmbutton" class="btn btn-danger">confirm</button>
+                    <button id="cancelconfirm" class="btn btn-secondary">Cancel</button>
                 </div>
             </div>
         </div>
 
-        <!-- Edit Modal -->
-        <div id="editModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <form id="editForm" action="editFormat.php" method="POST">
-                    <input type="hidden" id="formatId" name="genreId" value="">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name"><br>
-                    <div style="text-align: center;">
-                        <button id="saveEditButton" class="btn btn-primary">Save</button>
-                        <button id="cancelEditButton" class="btn btn-secondary">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
+      
 
 
         <!-- Custom scripts for all pages-->
-        <script src="js/common.js"></script>
-        <script src="js/formats.js"></script>
+       
         <script>
-            function openEditModal(formatId, formatnom) {
-                var modal = document.getElementById('editModal');
-                var form = document.getElementById('editForm');
+function showDeleteModal(Idempr, id_client, Titre, date_emprunt, date_retour,NumeroLivre) {
+    var modal = document.getElementById('confirmModal');
+    var modalText = document.getElementById('confirmempModalText');
+    modalText.innerHTML = "Are you sure you want to confirm " + Titre + "?";
 
-                if (modal && form) {
-                    form.elements['formatId'].value = formatId;
-                    form.elements['name'].value = formatnom;
+    var confirmbutton = document.getElementById('confirmbutton');
+    var cancelconfirm = document.getElementById('cancelconfirm');
 
-                    modal.style.display = "block";
+    confirmbutton.onclick = function() {
+        // AJAX request to send data to the PHP script
+     // AJAX request to send data to the PHP script
+$.ajax({
+    type: "POST",
+    url: "Confirmemp.php",
+    dataType : "text",
+    data: {
+        EMPId: Idempr,
+        idclient: id_client,
+        Titre: Titre,
+        dateemp: date_emprunt,
+        dateR: date_retour,
+        NumL:NumeroLivre
+    },
+    success: function(response) {
+        // Handle the response from PHP
+        console.log(response);
+        // You can perform additional actions based on the response if needed
+          modal.style.display = "none"; // Hide the modal after successful submission
+          location.reload(); // Reload the page
+    },
+    error: function(xhr, status, error) {
+        // Handle AJAX errors
+        console.error("AJAX Error: " + error);
+    }
+});
 
-                    var cancelButton = document.getElementById('cancelEditButton');
-                    var closeButton = document.querySelector('#editModal .close');
+       
+    }
 
-                    cancelButton.addEventListener('click', function() {
-                        modal.style.display = "none";
-                    });
+    cancelconfirm.onclick = function() {
+        modal.style.display = "none";
+    }
 
-                    closeButton.addEventListener('click', function() {
-                        modal.style.display = "none";
-                    });
+    modal.style.display = "block";
 
-                    form.onsubmit = function(event) {
-                        event.preventDefault();
-                        var formData = new FormData(form);
-                        fetch('./editFormat.php', {
-                                method: 'POST',
-                                body: formData
-                            })
-                            .then(response => response.text())
-                            .then(data => {
-                                console.log(data);
-                                if (data.includes("Format updated successfully")) {
-                                    modal.style.display = "none";
-                                    window.location.reload();
-                                } else {
+    var span = document.getElementsByClassName("close")[0];
 
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                            });
-                    };
-                } else {
-                    console.error("Modal or form element not found");
-                }
-            }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
 
-            window.onclick = function(event) {
-                var modal = document.getElementById("editModal");
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+</script>
 
-
-            function showDeleteModal(formatId, formatnom) {
-                var modal = document.getElementById('deleteModal');
-                var modalText = document.getElementById('deleteModalText');
-                modalText.innerHTML = "Are you sure you want to delete " + formatnom + "?";
-
-                var deleteButton = document.getElementById('deleteButton');
-                var cancelDeleteButton = document.getElementById('cancelDeleteButton');
-
-                deleteButton.onclick = function() {
-                    // Redirect to the delete script with Fomrat ID
-                    window.location.href = "./deleteF.php?Id=" + formatId;
-                }
-
-                cancelDeleteButton.onclick = function() {
-                    modal.style.display = "none";
-                }
-
-                modal.style.display = "block";
-
-                var span = document.getElementsByClassName("close")[0];
-
-                span.onclick = function() {
-                    modal.style.display = "none";
-                }
-
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            }
-        </script>
 
 
 </body>

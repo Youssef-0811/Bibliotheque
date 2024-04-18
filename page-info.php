@@ -197,7 +197,5 @@ Rejoignez-nous dès aujourd'hui et laissez-vous emporter par la magie des livres
 </form>
 </div>
 <?php } ?>
-
-
 </body>
 </html>

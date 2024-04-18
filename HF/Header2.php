@@ -9,6 +9,7 @@
     <li class="hideOnMobile"><a href="voirauteur.php">Auteurs</a></li>
     <li class="hideOnMobile"><a href="#">Reglement</a></li>
     <li class="hideOnMobile"><a href="#contact">Contact</a></li>
+    
     <?php
     session_start(); // Start session to check user login status
     if (isset($_SESSION['user_id'])) {
@@ -37,6 +38,7 @@
       if (isset($_SESSION['user_id'])) {
         // User is logged in
         echo '<li><a href="../Login\User\logout.php">Disconnect</a></li>';
+        echo '<li><a href="voslivresemprunter.php">livres emprunter</a></li>';
       } else {
         // User is not logged in
         echo '<li><a href="../Login/User/Registration.php">Inscription</a></li>';

@@ -131,7 +131,7 @@ $resulta = mysqli_query($conn, $sqla);
         <div class="about_tag">
             <h1>Apropos de nous</h1>
             <p> 
-          <b>Bienvenue à la Bibliothèque ONLINE</b> <br>
+          <b>Bienvenue à la Bibliothèque online</b> <br>
 
 Dans un coin paisible de la ville, se trouve un lieu enchanté où les mots prennent vie et les esprits s'évadent : la <b>Bibliothèque ONLINE</b>. Au cœur de cette oasis littéraire, un service d'emprunt de livres vous attend, ouvert à tous les avides de découvertes et de voyages au-delà des pages.
 
@@ -207,7 +207,8 @@ Rejoignez-nous dès aujourd'hui et laissez-vous emporter par la magie des livres
 
                         <form action="voirauteur.php" method="post">
 
-                        <input type="hidden" name="idauteur" value=" <?php echo $ligne['Id']; ?>">
+                        <input type="hidden" name="idauteur" value="<?php echo $ligne['Id']; ?>">
+
 
                         <input class="arrivals_btn" type="submit" name="submitauteur" value="Savoir plus">
                         </form>

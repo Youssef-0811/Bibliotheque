@@ -1,5 +1,5 @@
 <?php
-include("DataBase.php");
+include("../../DataBase.php");
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql =  "INSERT INTO user (Nom, Prenom, Email, Date_Naissance, Filiere, Password) VALUES ('$nom', '$prenom', '$email', '$date_naissance', '$filiere', '$pass')";
 
     if (mysqli_query($conn, $sql)) {
-        header('location: index.php');
+        header('location: ../../index.php');
         exit(); // Terminate the script after redirection
     } else {
         echo "Erreur: " . $sql . "<br>" . mysqli_error($conn);

@@ -35,7 +35,6 @@ include('pagination.php');
 
     <?php
     include('slider.php')
-
     ?>
 
 

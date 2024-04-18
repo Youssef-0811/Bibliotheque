@@ -133,7 +133,92 @@ include('DataBase.php');
     background-color: #bac383;
 }
   
+@media (max-width: 600px) {
+   .container2 {
+      position: relative;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 90%;
+      height: 20rem;
+      padding: 20px;
+      margin-top: 20rem;
+      background-color: azure;
+      box-shadow: 0 30px 50px #dbdbdb;
+      margin-bottom: -10rem;
+  }
+  #slide2{
+    width:max-content;
+    margin-top:50px;
+}
+.item2{
+    width:150px;
+    height:217px;
+    background-position: 50% 50%;
+    display: inline-block;
+    transition: 0.5s;
+    background-size: cover;
+    position: absolute;
+    top:36%;
+    transform: translate(0,-50%);
+    border-radius: 20px;
+    box-shadow:  0 30px 50px #505050;
+}
+.item2:nth-child(1),
 
+.item2 .content{
+    position: absolute;
+    top:50%;
+    left:100px;
+    width:300px;
+    text-align: left;
+    padding:0;
+    color:#eee;
+    transform: translate(0,-50%);
+    display: none;
+    font-family: system-ui;
+}
+.item2:nth-child(1),
+.item2:nth-child(2){
+    left:0;
+    top:0;
+    transform: translate(0,0);
+    border-radius: 0;
+    width:0%;
+    height:0%;
+    box-shadow: none;
+}
+.item2:nth-child(3){
+    left:25%;
+}
+.item2:nth-child(4){
+    left:calc(25% + 160px);
+}
+.item2:nth-child(5){
+    display: none;
+}
+
+.item2:nth-child(n+6){
+ display: none;
+}
+
+.buttons2{
+    position: absolute;
+    bottom:30px;
+    z-index: 222222;
+    text-align: center;
+    width:100%;
+}
+.buttons2 button{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    border:1px solid #555;
+    transition: 0.5s;
+}.buttons2 button:hover{
+    background-color: #bac383;
+}
+  
+ }
     </style>
 
 <?php
